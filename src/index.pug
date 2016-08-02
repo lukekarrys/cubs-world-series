@@ -6,8 +6,10 @@ html
     link(rel='shortcut icon' href='favicon.ico' type='image/x-icon')
     link(href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet')
     for css in htmlWebpackPlugin.files.css
-      link(rel='stylesheet' type='text/css' href=css)
-      //- style !{compilation.assets[css.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+      if (htmlWebpackPlugin.options.production)
+        style !{compilation.assets[css.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+      else
+        link(rel='stylesheet' type='text/css' href=css)
     title #{htmlWebpackPlugin.options.title}
   body
     h1.center
@@ -33,5 +35,7 @@ html
       | #[br] #[span.color.m] #[span.ml]
       | #[br] and #[span.color.s] #[span.sl] ago
     for js in htmlWebpackPlugin.files.js
-      script(src=js)
-      //- script !{compilation.assets[js.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+      if (htmlWebpackPlugin.options.production)
+        script !{compilation.assets[js.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+      else
+        script(src=js)

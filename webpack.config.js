@@ -47,6 +47,7 @@ module.exports = {
   postcss: () => [precss, autoprefixer],
   plugins: [
     new HtmlPlugin({
+      production,
       title: project.description,
       inject: false,
       favicon: src('favicon.ico'),
