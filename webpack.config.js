@@ -9,8 +9,8 @@ const autoprefixer = require('autoprefixer')
 const CNAMEPlugin = require('./lib/cname-webpack-plugin')
 const project = require('./package.json')
 
-const root = (...parts) => path.join(__dirname, ...parts)
-const src = (...parts) => root('src', ...parts)
+const root = (parts) => path.join.apply(path, [__dirname].concat(parts || []))
+const src = (file) => root(['src', file])
 const production = process.env.NODE_ENV === 'production'
 const build = 'build'
 

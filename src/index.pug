@@ -6,7 +6,8 @@ html
     link(rel='shortcut icon' href='favicon.ico' type='image/x-icon')
     link(href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet')
     for css in htmlWebpackPlugin.files.css
-      link(rel='stylesheet' type='text/css' href=css)
+      //- link(rel='stylesheet' type='text/css' href=css)
+      style !{compilation.assets[css.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
     title #{htmlWebpackPlugin.options.title}
   body
     h1.center
@@ -32,4 +33,5 @@ html
       | #[br] #[span(class='minutes')] minutes
       | #[br] and #[span(class='seconds')] seconds ago
     for js in htmlWebpackPlugin.files.js
-      script(src=js)
+      //- script(src=js)
+      script !{compilation.assets[js.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
