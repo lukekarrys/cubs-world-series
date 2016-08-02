@@ -23,10 +23,10 @@ export default (date, now) => {
   const ms = Math.floor(milliseconds)
 
   return {
-    days: d,
-    hours: h,
-    minutes: m,
-    seconds: s,
-    milliseconds: ms
+    d,
+    h,
+    m,
+    s,
+    ms
   }
 }

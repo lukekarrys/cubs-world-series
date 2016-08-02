@@ -6,32 +6,32 @@ html
     link(rel='shortcut icon' href='favicon.ico' type='image/x-icon')
     link(href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet')
     for css in htmlWebpackPlugin.files.css
-      //- link(rel='stylesheet' type='text/css' href=css)
-      style !{compilation.assets[css.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+      link(rel='stylesheet' type='text/css' href=css)
+      //- style !{compilation.assets[css.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
     title #{htmlWebpackPlugin.options.title}
   body
     h1.center
-      | The #[span Cubs] last won the #[span World Series]
-      | #[br] on #[span October 14, 1908]
-      | #[br] at #[span 2:25pm]
-      | #[br] in #[span Detroit, Michigan]#[sup #[a(href='http://www.baseball-reference.com/boxes/DET/DET190810140.shtml' target='_blank')]]
+      | The #[span.color Cubs] last won the #[span.color World Series]
+      | #[br] on #[span.color October 14, 1908]
+      | #[br] at #[span.color 2:25pm]
+      | #[br] in #[span.color Detroit, Michigan]#[sup #[a(href='http://www.baseball-reference.com/boxes/DET/DET190810140.shtml' target='_blank')]]
     h1#won.center
       | That is
-      | #[br] #[span(class='days')] days
-      | #[br] #[span(class='hours')] hours
-      | #[br] #[span(class='minutes')] minutes
-      | #[br] and #[span(class='seconds')] seconds ago
+      | #[br] #[span.color.d] #[span.dl]
+      | #[br] #[span.color.h] #[span.hl]
+      | #[br] #[span.color.m] #[span.ml]
+      | #[br] and #[span.color.s] #[span.sl] ago
     h1.center
-      | The #[span Cubs] last played in the #[span World Series]
-      | #[br] on #[span October 10, 1945]
-      | #[br] at #[span 3:31pm]
-      | #[br] in #[span Chicago, Illinois]#[sup #[a(href='http://www.baseball-reference.com/boxes/CHN/CHN194510100.shtml' target='_blank')]]
+      | The #[span.color Cubs] last played in the #[span.color World Series]
+      | #[br] on #[span.color October 10, 1945]
+      | #[br] at #[span.color 3:31pm]
+      | #[br] in #[span.color Chicago, Illinois]#[sup #[a(href='http://www.baseball-reference.com/boxes/CHN/CHN194510100.shtml' target='_blank')]]
     h1#played.center
       | That is
-      | #[br] #[span(class='days')] days
-      | #[br] #[span(class='hours')] hours
-      | #[br] #[span(class='minutes')] minutes
-      | #[br] and #[span(class='seconds')] seconds ago
+      | #[br] #[span.color.d] #[span.dl]
+      | #[br] #[span.color.h] #[span.hl]
+      | #[br] #[span.color.m] #[span.ml]
+      | #[br] and #[span.color.s] #[span.sl] ago
     for js in htmlWebpackPlugin.files.js
-      //- script(src=js)
-      script !{compilation.assets[js.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+      script(src=js)
+      //- script !{compilation.assets[js.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
