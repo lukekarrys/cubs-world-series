@@ -47,7 +47,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/cubs-world-series/cubsws.git"
+    "url": "git+ssh://git@github.com/lukekarrys/cubsws.git"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack -p --bail",
