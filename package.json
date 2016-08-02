@@ -32,7 +32,7 @@
   "engines": {
     "node": "6.3.1"
   },
-  "homepage": "http://cubs.lukelov.es",
+  "homepage": "http://cubsws.lukelov.es",
   "keywords": [
     "cubs",
     "time since",
@@ -47,7 +47,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/lukekarrys/cubsws.git"
+    "url": "git+ssh://git@github.com/lukekarrys/cubs-world-series.git"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack -p --bail",
