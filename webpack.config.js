@@ -1,19 +1,24 @@
+'use strict'
+
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
+const CNAMEPlugin = require('./lib/cname-webpack-plugin')
 const project = require('./package.json')
 
-const noop = () => {}
+const root = (...parts) => path.join(__dirname, ...parts)
+const src = (...parts) => root('src', ...parts)
 const production = process.env.NODE_ENV === 'production'
+const build = 'build'
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: src('index.js'),
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: `bundle${production ? '.[hash]' : ''}.js`
+    path: root(build),
+    filename: `app${production ? '.[hash]' : ''}.js`
   },
   module: {
     loaders: [
@@ -35,7 +40,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: production ? ExtractTextPlugin.extract('style', 'css', 'postcss') : 'style!css!postcss'
+        loader: production ? ExtractTextPlugin.extract('style', 'css!postcss') : 'style!css!postcss'
       }
     ]
   },
@@ -44,10 +49,24 @@ module.exports = {
     new HtmlPlugin({
       title: project.description,
       inject: false,
-      favicon: path.join(__dirname, 'src', 'favicon.ico'),
-      template: path.join(__dirname, 'src', 'index.pug')
+      favicon: src('favicon.ico'),
+      template: src('index.pug'),
+      minify: {
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        collapseInlineTagWhitespace: true,
+        conservativeCollapse: true,
+        removeAttributeQuotes: true,
+        removeComments: true,
+        removeEmptyAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        quoteCharacter: "'"
+      }
     }),
-    production ? new CleanPlugin(['build'], { root: __dirname }) : noop,
-    production ? new ExtractTextPlugin('style.[contenthash].css') : noop
-  ]
+    production && new CleanPlugin([build], { root: root() }),
+    production && new CNAMEPlugin(project.homepage),
+    production && new ExtractTextPlugin('app.[contenthash].css')
+  ].filter(Boolean)
 }

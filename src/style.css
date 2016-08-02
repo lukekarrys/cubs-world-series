@@ -1,14 +1,70 @@
+@import '../node_modules/normalize.css/normalize.css';
+
 $blue: #0E3386;
 $red: #D12325;
+$small: 800px;
+
+body {
+  counter-reset: sup;
+}
 
 h1 {
   font-family: Oswald, 'sans-serif';
   color: $blue;
+  font-size: 4em;
+  line-height: 1.4em;
+  text-align: center;
+  margin: 0.67em 0;
+  padding: 0 1em 0.67em 1em;
+  border-bottom: 5px solid $blue;
+  position: relative;
+
+  &:before {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    border-bottom: 5px solid $red;
+  }
+
   span {
     color: $red;
   }
+
+  &:last-of-type {
+    padding-bottom: 0;
+    border-bottom: none;
+    &:before {
+      display: none;
+    }
+  }
+
+  @media screen and (width <= 800px) {
+    font-size: 2em;
+  }
 }
 
-.center {
-  text-align: center;
+a, a:visited {
+  color: $blue;
+  text-decoration: none;
+  &:hover { color: $red; }
 }
+
+sup a {
+  font-size: 0.8em;
+  padding: 0.2em;
+
+  &:before {
+    counter-increment: sup;
+    content: counter(sup);
+  }
+}
+
+@media screen and (width <= 800px) {
+  br {
+    display: none;
+  }
+}
+

@@ -1,12 +1,14 @@
 {
-  "name": "cubsworldseries",
+  "name": "cubs-world-series",
   "description": "When did the Cubs last win the World Series?",
   "version": "1.0.0",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "bugs": {
-    "url": "https://github.com/lukekarrys/timesincecubswontheworldseries.club/issues"
+    "url": "https://github.com/lukekarrys/cubs-world-series/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^4.2.0"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
     "babel-loader": "^6.2.4",
@@ -15,6 +17,7 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "git-directory-deploy": "^1.5.0",
+    "git-validate": "^2.1.4",
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
     "postcss-loader": "^0.9.1",
@@ -26,22 +29,34 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
-  "homepage": "http://timesincecubswontheworldseries.com",
+  "engines": {
+    "node": "6.3.1"
+  },
+  "homepage": "http://cubs.lukelov.es",
   "keywords": [
     "cubs",
     "time since",
     "world series"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "webpack.config.js",
+  "pre-commit": [
+    "lint",
+    "validate"
+  ],
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/lukekarrys/timesincecubswontheworldseries.git"
+    "url": "git+ssh://git@github.com/cubs-world-series/cubsws.git"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack -p --bail",
+    "codeship-deploy": "npm run deploy",
+    "codeship-setup": "npm install && npm run build",
+    "codeship-test": "npm run lint",
     "deploy": "git-directory-deploy --directory build --username lukekarrys --email lukekarrys@gmail.com --repo `cat package.json | jq -r '.repository.url'` --message='--skip-ci'",
     "lint": "standard",
-    "start": "webpack-dev-server --content-base src/ --no-info --progress --colors --inline --port 3000"
+    "start": "webpack-dev-server --content-base src/ --no-info --progress --colors --inline --port 3000",
+    "validate": "npm ls >/dev/null"
   }
 }
