@@ -1,4 +1,14 @@
-body {
-  background: #0E3386;
-  color: #D12325;
+$blue: #0E3386;
+$red: #D12325;
+
+h1 {
+  font-family: Oswald, 'sans-serif';
+  color: $blue;
+  span {
+    color: $red;
+  }
+}
+
+.center {
+  text-align: center;
 }

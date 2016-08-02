@@ -2,6 +2,8 @@ const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
+const precss = require('precss')
+const autoprefixer = require('autoprefixer')
 const project = require('./package.json')
 
 const noop = () => {}
@@ -33,10 +35,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: production ? ExtractTextPlugin.extract('style', 'css') : 'style!css'
+        loader: production ? ExtractTextPlugin.extract('style', 'css', 'postcss') : 'style!css!postcss'
       }
     ]
   },
+  postcss: () => [precss, autoprefixer],
   plugins: [
     new HtmlPlugin({
       title: project.description,

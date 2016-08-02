@@ -4,10 +4,25 @@ html
     meta(http-equiv='Content-type' content='text/html; charset=utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='shortcut icon' href='favicon.ico' type='image/x-icon/')
+    link(href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css')
     for css in htmlWebpackPlugin.files.css
       link(rel='stylesheet' type='text/css' href=css)
     title #{htmlWebpackPlugin.options.title}
   body
+    h1.center
+      | The Cubs last won the World Series
+      | <br/>on #[span October 14, 1908]
+      | <br/>at #[span 2:25pm]
+      | <br/>in #[span Detroit, Michigan].
+    h1.center
+      | That is
+      | <br/>#[span a long time ago].
+    h1.center
+      | More specifically,
+      | <br/> #[span(id='days')] days
+      | <br/> #[span(id='hours')] hours
+      | <br/> #[span(id='minutes')] minutes
+      | <br/> #[span(id='seconds')] seconds.
     div#root
     for js in htmlWebpackPlugin.files.js
       script(src=js)
