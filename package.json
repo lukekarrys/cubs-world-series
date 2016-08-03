@@ -16,7 +16,6 @@
     "clean-webpack-plugin": "^0.1.10",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.9.0",
     "git-directory-deploy": "^1.5.0",
     "git-validate": "^2.1.4",
     "html-webpack-plugin": "^2.22.0",
@@ -27,7 +26,6 @@
     "pug-loader": "^2.1.0",
     "standard": "^7.1.2",
     "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
@@ -58,7 +56,7 @@
     "codeship-test": "npm run lint",
     "deploy": "git-directory-deploy --directory build --username lukekarrys --email lukekarrys@gmail.com --repo `cat package.json | jq -r '.repository.url'` --message='--skip-ci'",
     "lint": "standard",
-    "start": "webpack-dev-server --content-base src/ --no-info --progress --colors --inline --port 3000",
+    "start": "webpack-dev-server --content-base src/ --no-info --progress --colors --inline --port 3000 --host lukekarrys.local",
     "validate": "npm ls >/dev/null"
   }
 }

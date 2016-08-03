@@ -41,10 +41,6 @@ module.exports = {
       {
         test: /\.css$/,
         loader: production ? ExtractTextPlugin.extract('style', 'css!postcss') : 'style!css!postcss'
-      },
-      {
-        test: /\.woff2?(\?\S*)?$/,
-        loader: 'url?mimetype=application/font-woff&limit=15000'
       }
     ]
   },
