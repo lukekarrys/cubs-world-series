@@ -8,6 +8,8 @@ const LAST_PLAYED = -764476103235
 const LABELS = { d: 'day', h: 'hour', m: 'minute', s: 'second' }
 const NODES = Object.keys(LABELS)
 
+const pluralize = (word, count) => `${word}${count === 1 ? '' : 's'}`
+
 const getNodes = (id) => NODES.reduce((res, name) => {
   res[name] = document.querySelector(`#${id} .${name}`)
   res[`${name}l`] = document.querySelector(`#${id} .${name}l`)
@@ -19,7 +21,7 @@ const playedNodes = getNodes('played')
 
 const renderNodes = (nodes, data) => NODES.forEach((name) => {
   nodes[name].textContent = data[name]
-  nodes[`${name}l`].textContent = `${LABELS[name]}${data[name] === 1 ? '' : 's'}`
+  nodes[`${name}l`].textContent = `${pluralize(LABELS[name], data[name])}`
 })
 
 function render () {
