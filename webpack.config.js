@@ -7,6 +7,8 @@ const CleanPlugin = require('clean-webpack-plugin')
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
 const CNAMEPlugin = require('./lib/cname-webpack-plugin')
+const JSONPlugin = require('./lib/json-webpack-plugin')
+const data = require('./lib/data')
 const project = require('./package.json')
 
 const root = (parts) => path.join.apply(path, [__dirname].concat(parts || []))
@@ -63,6 +65,11 @@ module.exports = {
         quoteCharacter: "'"
       }
     }),
+    new JSONPlugin('api', Object.keys(data).reduce((res, key) => {
+      res[key] = data[key]
+      res[`${key}_date`] = new Date(data[key])
+      return res
+    }, {})),
     production && new CleanPlugin([build], { root: root() }),
     production && new CNAMEPlugin(project.homepage),
     production && new ExtractTextPlugin('app.[contenthash].css')

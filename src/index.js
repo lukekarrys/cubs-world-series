@@ -1,10 +1,9 @@
 import './style.css'
 import countup from './lib/countup'
+import data from '../lib/data'
 
 const { requestAnimationFrame: raf } = window
 
-const LAST_WON = -1931744069967
-const LAST_PLAYED = -764476103235
 const LABELS = { d: 'day', h: 'hour', m: 'minute', s: 'second' }
 const NODES = Object.keys(LABELS)
 
@@ -25,8 +24,8 @@ const renderNodes = (nodes, data) => NODES.forEach((name) => {
 })
 
 function render () {
-  renderNodes(wonNodes, countup(LAST_WON))
-  renderNodes(playedNodes, countup(LAST_PLAYED))
+  renderNodes(wonNodes, countup(data.won))
+  renderNodes(playedNodes, countup(data.played))
   raf(render)
 }
 
