@@ -63,13 +63,19 @@ module.exports = {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true,
         quoteCharacter: "'"
-      }
+      },
+      data: Object.keys(data).reduce((res, key) => Object.assign(res, {
+        [key]: {
+          date: data[key].format('MMMM D, YYYY'),
+          time: data[key].format('h:mma'),
+          place: data[key]._z.name.split('/')[1]
+        }
+      }), {})
     }),
-    new JSONPlugin('api', Object.keys(data).reduce((res, key) => {
-      res[key] = data[key]
-      res[`${key}_date`] = new Date(data[key])
-      return res
-    }, {})),
+    new JSONPlugin('api', Object.keys(data).reduce((res, key) => Object.assign(res, {
+      [key]: data[key].valueOf(),
+      [`${key}_date`]: data[key].clone().utc()
+    }), {})),
     production && new CleanPlugin([build], { root: root() }),
     production && new CNAMEPlugin(project.homepage),
     production && new ExtractTextPlugin('app.[contenthash].css')

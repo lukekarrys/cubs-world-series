@@ -1,3 +1,6 @@
+- const files = htmlWebpackPlugin.files
+- const options = htmlWebpackPlugin.options
+- const data = options.data
 doctype html
 html
   head
@@ -5,18 +8,18 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='shortcut icon' href='favicon.ico' type='image/x-icon')
     link(href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet')
-    for css in htmlWebpackPlugin.files.css
-      if (htmlWebpackPlugin.options.production)
-        style !{compilation.assets[css.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+    for css in files.css
+      if (options.production)
+        style !{compilation.assets[css.substr(files.publicPath.length)].source()}
       else
         link(rel='stylesheet' type='text/css' href=css)
-    title #{htmlWebpackPlugin.options.title}
+    title #{options.title}
   body
     h1.center
       | The #[span.color Cubs] last won the #[span.color World Series]
-      | #[br] on #[span.color October 14, 1908]
-      | #[br] at #[span.color 2:25pm]
-      | #[br] in #[span.color Detroit, Michigan]#[sup #[a(href='http://www.baseball-reference.com/boxes/DET/DET190810140.shtml' target='_blank')]]
+      | #[br] on #[span.color #{data.won.date}]
+      | #[br] at #[span.color #{data.won.time}]
+      | #[br] in #[span.color #{data.won.place}]#[sup #[a(href='http://www.baseball-reference.com/boxes/DET/DET190810140.shtml' target='_blank')]]
     h1#won.center
       | That is
       | #[br] #[span.color.d] #[span.dl]
@@ -25,17 +28,17 @@ html
       | #[br] and #[span.color.s] #[span.sl] ago
     h1.center
       | The #[span.color Cubs] last played in the #[span.color World Series]
-      | #[br] on #[span.color October 10, 1945]
-      | #[br] at #[span.color 3:31pm]
-      | #[br] in #[span.color Chicago, Illinois]#[sup #[a(href='http://www.baseball-reference.com/boxes/CHN/CHN194510100.shtml' target='_blank')]]
+      | #[br] on #[span.color #{data.played.date}]
+      | #[br] at #[span.color #{data.played.time}]
+      | #[br] in #[span.color #{data.played.place}]#[sup #[a(href='http://www.baseball-reference.com/boxes/CHN/CHN194510100.shtml' target='_blank')]]
     h1#played.center
       | That is
       | #[br] #[span.color.d] #[span.dl]
       | #[br] #[span.color.h] #[span.hl]
       | #[br] #[span.color.m] #[span.ml]
       | #[br] and #[span.color.s] #[span.sl] ago
-    for js in htmlWebpackPlugin.files.js
-      if (htmlWebpackPlugin.options.production)
-        script !{compilation.assets[js.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+    for js in files.js
+      if (options.production)
+        script !{compilation.assets[js.substr(files.publicPath.length)].source()}
       else
         script(src=js)
