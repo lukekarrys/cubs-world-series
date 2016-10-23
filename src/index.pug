@@ -28,17 +28,23 @@ html
       | #[br] and #[span.color.s] #[span.sl] ago
     h1.center
       | The #[span.color Cubs] last played in the #[span.color World Series]
-      | #[br] on #[span.color #{data.played.date}]
-      | #[br] at #[span.color #{data.played.time}]
-      | #[br] in #[span.color #{data.played.place}]#[sup #[a(href='http://www.baseball-reference.com/boxes/CHN/CHN194510100.shtml' target='_blank')]]
-    h1#played.center
-      | That is
-      | #[br] #[span.color.d] #[span.dl]
-      | #[br] #[span.color.h] #[span.hl]
-      | #[br] #[span.color.m] #[span.ml]
-      | #[br] and #[span.color.s] #[span.sl] ago
+      if (typeof data.played === 'object')
+        | #[br] on #[span.color #{data.played.date}]
+        | #[br] at #[span.color #{data.played.time}]
+        | #[br] in #[span.color #{data.played.place}]#[sup #[a(href='http://www.baseball-reference.com/boxes/CHN/CHN194510100.shtml' target='_blank')]]
+      else
+        | #[br] #[span RIGHT]
+        | #[br] #[span.color FRIGGIN']
+        | #[br] #[span NOW]
+    if (typeof data.played === 'object')
+      h1#played.center
+        | That is
+        | #[br] #[span.color.d] #[span.dl]
+        | #[br] #[span.color.h] #[span.hl]
+        | #[br] #[span.color.m] #[span.ml]
+        | #[br] and #[span.color.s] #[span.sl] ago
     script.
-      window.data = !{JSON.stringify({won: data.won.d, played: data.played.d})}
+      window.data = !{JSON.stringify({won: data.won.d || data.won, played: data.played.d || data.played})}
     for js in files.js
       if (options.production)
         script !{compilation.assets[js.substr(files.publicPath.length)].source()}
