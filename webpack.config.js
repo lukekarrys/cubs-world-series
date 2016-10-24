@@ -66,6 +66,7 @@ module.exports = {
       },
       data: Object.keys(data).reduce((res, key) => Object.assign(res, {
         [key]: {
+          d: data[key],
           date: data[key].format('MMMM D, YYYY'),
           time: data[key].format('h:mma'),
           place: data[key]._z.name.split('/')[1]
