@@ -37,6 +37,8 @@ html
       | #[br] #[span.color.h] #[span.hl]
       | #[br] #[span.color.m] #[span.ml]
       | #[br] and #[span.color.s] #[span.sl] ago
+    script.
+      window.data = !{JSON.stringify({won: data.won.d, played: data.played.d})}
     for js in files.js
       if (options.production)
         script !{compilation.assets[js.substr(files.publicPath.length)].source()}
