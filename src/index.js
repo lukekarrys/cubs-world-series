@@ -1,8 +1,7 @@
 import './style.css'
 import countup from './lib/countup'
-import data from '../lib/data'
 
-const { requestAnimationFrame: raf } = window
+const { requestAnimationFrame: raf, data } = window
 
 const LABELS = { d: 'day', h: 'hour', m: 'minute', s: 'second' }
 const NODES = Object.keys(LABELS)
