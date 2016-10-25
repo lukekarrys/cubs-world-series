@@ -5,6 +5,10 @@ const H = 24
 const BASE = MS * S * M * H
 
 export default (date, now) => {
+  const val = date._d || date
+
+  if (typeof val !== 'string') return
+
   const input = (now || Date.now()) - (new Date(date._d || date)).valueOf()
 
   const days = input / BASE
