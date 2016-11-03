@@ -19,7 +19,7 @@ html
       | The #[span.color Cubs] last won the #[span.color World Series]
       | #[br] on #[span.color #{data.won.date}]
       | #[br] at #[span.color #{data.won.time}]
-      | #[br] in #[span.color #{data.won.place}]#[sup #[a(href='http://www.baseball-reference.com/boxes/DET/DET190810140.shtml' target='_blank')]]
+      | #[br] in #[span.color #{data.won_location}]#[sup #[a(href='http://www.baseball-reference.com/boxes/CLE/CLE201611020.shtml' target='_blank')]]
     h1#won.center
       | That is
       | #[br] #[span.color.d] #[span.dl]
@@ -31,7 +31,7 @@ html
       if (typeof data.played === 'object')
         | #[br] on #[span.color #{data.played.date}]
         | #[br] at #[span.color #{data.played.time}]
-        | #[br] in #[span.color #{data.played.place}]#[sup #[a(href='http://www.baseball-reference.com/boxes/CHN/CHN194510100.shtml' target='_blank')]]
+        | #[br] in #[span.color #{data.played_location}]#[sup #[a(href='http://www.baseball-reference.com/boxes/CLE/CLE201611020.shtml' target='_blank')]]
       else
         | #[br] #[span RIGHT]
         | #[br] #[span.color FRIGGIN']

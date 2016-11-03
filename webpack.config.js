@@ -7,6 +7,7 @@ const CleanPlugin = require('clean-webpack-plugin')
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
 const moment = require('moment-timezone')
+const _ = require('lodash')
 const CNAMEPlugin = require('./lib/cname-webpack-plugin')
 const JSONPlugin = require('./lib/json-webpack-plugin')
 const data = require('./lib/data')
@@ -69,15 +70,14 @@ module.exports = {
         [key]: !moment.isMoment(data[key]) ? data[key] : {
           d: data[key],
           date: data[key].format('MMMM D, YYYY'),
-          time: data[key].format('h:mma'),
-          place: data[key]._z.name.split('/')[1]
+          time: data[key].format('h:mma')
         }
       }), {})
     }),
-    new JSONPlugin('api', Object.keys(data).reduce((res, key) => Object.assign(res, {
+    new JSONPlugin('api', _.pickBy(Object.keys(data).reduce((res, key) => Object.assign(res, {
       [key]: data[key].valueOf(),
-      [`${key}_date`]: moment.isMoment(data[key]) ? data[key].clone().utc() : data[key]
-    }), {})),
+      [`${key}_date`]: moment.isMoment(data[key]) ? data[key].clone().utc() : undefined
+    }), {})), (__, value) => typeof value !== 'undefined'),
     production && new CleanPlugin([build], { root: root() }),
     production && new CNAMEPlugin(project.homepage),
     production && new ExtractTextPlugin('app.[contenthash].css')
