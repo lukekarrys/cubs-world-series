@@ -18,6 +18,11 @@ const src = (file) => root(['src', file])
 const production = process.env.NODE_ENV === 'production'
 const build = 'build'
 
+const postcss = {
+  loader: 'postcss-loader',
+  options: { plugins: () => [precss, autoprefixer] }
+}
+
 module.exports = {
   entry: src('index.js'),
   output: {
@@ -25,27 +30,27 @@ module.exports = {
     filename: `app${production ? '.[hash]' : ''}.js`
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /.json$/,
-        loader: 'json'
-      },
-      {
         test: /.pug$/,
-        loader: 'pug'
+        loader: 'pug-loader'
       },
       {
         test: /\.css$/,
-        loader: production ? ExtractTextPlugin.extract('style', 'css!postcss') : 'style!css!postcss'
+        use: production
+          ? ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            loader: ['css-loader', postcss]
+          })
+          : ['style-loader', 'css-loader', postcss]
       }
     ]
   },
-  postcss: () => [precss, autoprefixer],
   plugins: [
     new HtmlPlugin({
       production,
