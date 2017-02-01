@@ -51,7 +51,7 @@ html
       ga('create', 'UA-8402584-17', 'auto');
       ga('send', 'pageview');
     script.
-      window.data = !{JSON.stringify({won: data.won.d || data.won, played: data.played.d || data.played})}
+      window.data = !{JSON.stringify({won: data.won.d, played: data.played.d})}
     for js in files.js
       if (options.production)
         script !{compilation.assets[js.substr(files.publicPath.length)].source()}

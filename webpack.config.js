@@ -4,12 +4,7 @@ const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
-const precss = require('precss')
-const autoprefixer = require('autoprefixer')
-const moment = require('moment-timezone')
-const _ = require('lodash')
-const CNAMEPlugin = require('./lib/cname-webpack-plugin')
-const JSONPlugin = require('./lib/json-webpack-plugin')
+const {cname: CNAMEPlugin, json: JSONPlugin} = require('./lib/file-plugin')
 const data = require('./lib/data')
 const project = require('./package.json')
 
@@ -20,7 +15,16 @@ const build = 'build'
 
 const postcss = {
   loader: 'postcss-loader',
-  options: { plugins: () => [precss, autoprefixer] }
+  options: { plugins: () => [require('precss'), require('autoprefixer')] }
+}
+
+const productionPlugins = []
+if (production) {
+  productionPlugins.push(...[
+    new CleanPlugin([build], { root: root() }),
+    new CNAMEPlugin(project.homepage),
+    new ExtractTextPlugin('app.[contenthash].css')
+  ])
 }
 
 module.exports = {
@@ -54,6 +58,7 @@ module.exports = {
   plugins: [
     new HtmlPlugin({
       production,
+      data: data.template,
       title: project.description,
       inject: false,
       favicon: src('favicon.ico'),
@@ -70,21 +75,9 @@ module.exports = {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true,
         quoteCharacter: "'"
-      },
-      data: Object.keys(data).reduce((res, key) => Object.assign(res, {
-        [key]: !moment.isMoment(data[key]) ? data[key] : {
-          d: data[key],
-          date: data[key].format('MMMM D, YYYY'),
-          time: data[key].format('h:mma')
-        }
-      }), {})
+      }
     }),
-    new JSONPlugin('api', _.pickBy(Object.keys(data).reduce((res, key) => Object.assign(res, {
-      [key]: data[key].valueOf(),
-      [`${key}_date`]: moment.isMoment(data[key]) ? data[key].clone().utc() : undefined
-    }), {})), (__, value) => typeof value !== 'undefined'),
-    production && new CleanPlugin([build], { root: root() }),
-    production && new CNAMEPlugin(project.homepage),
-    production && new ExtractTextPlugin('app.[contenthash].css')
-  ].filter(Boolean)
+    new JSONPlugin('api', data.api),
+    ...productionPlugins
+  ]
 }

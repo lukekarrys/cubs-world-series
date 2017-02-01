@@ -59,7 +59,7 @@
     "codeship-test": "npm run lint",
     "deploy": "git-directory-deploy --directory build --username lukekarrys --email lukekarrys@gmail.com --repo `cat package.json | json repository.url` --message='--skip-ci'",
     "lint": "standard",
-    "start": "webpack-dev-server --content-base src/ --no-info --progress --colors --inline --port 3000",
+    "start": "webpack-dev-server --open --no-info",
     "validate": "npm ls >/dev/null"
   }
 }
