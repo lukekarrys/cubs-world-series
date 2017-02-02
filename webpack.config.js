@@ -36,12 +36,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.(eot|woff|woff2|svg)$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /.pug$/,
+        test: /\.pug$/,
         loader: 'pug-loader'
       },
       {

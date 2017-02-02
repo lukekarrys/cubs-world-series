@@ -1,4 +1,6 @@
+import 'typeface-oswald'
 import './style.css'
+
 import countup from './lib/countup'
 
 const { requestAnimationFrame: raf, data } = window
