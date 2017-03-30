@@ -6,6 +6,7 @@ $small: 800px;
 
 body {
   counter-reset: sup;
+  margin: 0;
 }
 
 h1 {
