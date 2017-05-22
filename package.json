@@ -30,7 +30,7 @@
     "pug": "^2.0.0-beta4",
     "pug-loader": "^2.3.0",
     "standard": "^10.0.0",
-    "style-loader": "^0.17.0",
+    "style-loader": "^0.18.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.2.1"
   },
