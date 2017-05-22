@@ -15,7 +15,14 @@ const build = 'build'
 
 const postcss = {
   loader: 'postcss-loader',
-  options: { plugins: () => [require('precss'), require('autoprefixer')] }
+  options: {
+    plugins: [
+      require('postcss-nesting'),
+      require('postcss-custom-properties'),
+      require('postcss-media-minmax'),
+      require('autoprefixer')
+    ]
+  }
 }
 
 const productionPlugins = []
@@ -37,23 +44,23 @@ module.exports = {
     rules: [
       {
         test: /\.(eot|woff|woff2|svg)$/,
-        loader: 'file-loader'
+        use: 'file-loader'
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.pug$/,
-        loader: 'pug-loader'
+        use: 'pug-loader'
       },
       {
         test: /\.css$/,
         use: production
           ? ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: ['css-loader', postcss]
+            fallback: 'style-loader',
+            use: ['css-loader', postcss]
           })
           : ['style-loader', 'css-loader', postcss]
       }

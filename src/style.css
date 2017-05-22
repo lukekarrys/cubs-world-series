@@ -1,8 +1,9 @@
 @import '../node_modules/normalize.css/normalize.css';
 
-$blue: #0E3386;
-$red: #D12325;
-$small: 800px;
+:root {
+  --blue: #0E3386;
+  --red: #D12325;
+}
 
 body {
   counter-reset: sup;
@@ -12,13 +13,13 @@ body {
 h1 {
   font-family: Oswald, sans-serif;
   font-weight: 700;
-  color: $blue;
+  color: var(--blue);
   font-size: 4em;
   line-height: 1.4em;
   text-align: center;
   margin: 0.67em 0;
   padding: 0 1em 0.67em 1em;
-  border-bottom: 5px solid $blue;
+  border-bottom: 5px solid var(--blue);
   position: relative;
 
   &:before {
@@ -28,11 +29,11 @@ h1 {
     left: 0;
     right: 0;
     bottom: -10px;
-    border-bottom: 5px solid $red;
+    border-bottom: 5px solid var(--red);
   }
 
-  .color {
-    color: $red;
+  & .color {
+    color: var(--red);
   }
 
   &:last-of-type {
@@ -49,9 +50,9 @@ h1 {
 }
 
 a, a:visited {
-  color: $blue;
+  color: var(--blue);
   text-decoration: none;
-  &:hover { color: $red; }
+  &:hover { color: var(--red); }
 }
 
 sup a {
