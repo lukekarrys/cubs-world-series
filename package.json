@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "normalize.css": "^7.0.0",
-    "typeface-oswald": "0.0.31"
+    "typeface-oswald": "0.0.32"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
