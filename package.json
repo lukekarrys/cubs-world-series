@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "normalize.css": "^7.0.0",
-    "typeface-oswald": "0.0.31"
+    "typeface-oswald": "0.0.34"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -37,7 +37,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "engines": {
-    "node": "^6.0.0"
+    "node": "^8.0.0"
   },
   "homepage": "http://cubsws.lukelov.es",
   "keywords": [
