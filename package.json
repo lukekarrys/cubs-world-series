@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "normalize.css": "^7.0.0",
-    "typeface-oswald": "0.0.35"
+    "typeface-oswald": "0.0.45"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -32,7 +32,7 @@
     "pug": "^2.0.0-rc.2",
     "pug-loader": "^2.3.0",
     "standard": "^10.0.2",
-    "style-loader": "^0.18.2",
+    "style-loader": "^0.19.0",
     "webpack": "^3.1.0",
     "webpack-dev-server": "^2.5.1"
   },
