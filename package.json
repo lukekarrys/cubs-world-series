@@ -48,8 +48,7 @@
   "license": "MIT",
   "main": "webpack.config.js",
   "pre-commit": [
-    "lint",
-    "validate"
+    "lint"
   ],
   "private": true,
   "repository": {
