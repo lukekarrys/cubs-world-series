@@ -11,7 +11,6 @@
     "typeface-oswald": "0.0.45"
   },
   "devDependencies": {
-    "ajv": "^6.5.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
@@ -61,7 +60,7 @@
     "build": "NODE_ENV=production webpack -p --bail",
     "codeship-deploy": "npm run deploy",
     "codeship-setup": "npm install && npm run build",
-    "codeship-test": "npm --version && npm run lint && npm run validate",
+    "codeship-test": "npm run lint",
     "deploy": "git-directory-deploy --directory build --username lukekarrys --email lukekarrys@gmail.com --repo `cat package.json | json repository.url` --message='--skip-ci'",
     "lint": "standard",
     "start": "webpack-dev-server --open",
