@@ -4,7 +4,7 @@ const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
-const {cname: CNAMEPlugin, json: JSONPlugin} = require('./lib/file-plugin')
+const {json: JSONPlugin} = require('./lib/file-plugin')
 const data = require('./lib/data')
 const project = require('./package.json')
 
@@ -29,7 +29,6 @@ const productionPlugins = []
 if (production) {
   productionPlugins.push(...[
     new CleanPlugin([build], { root: root() }),
-    new CNAMEPlugin(project.homepage),
     new ExtractTextPlugin('app.[contenthash].css')
   ])
 }
