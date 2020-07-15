@@ -22,7 +22,7 @@
     "git-validate": "^2.2.2",
     "html-webpack-plugin": "^2.29.0",
     "json": "^9.0.6",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "moment-timezone": "^0.5.13",
     "postcss-custom-properties": "^6.1.0",
     "postcss-loader": "^2.0.6",
